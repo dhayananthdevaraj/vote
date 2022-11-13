@@ -1,25 +1,37 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
-
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const [people,setPeople] = useState([
+{
+name:"A",
+vote:0
+},
+{
+name:"B",
+vote:0
+},
+])
+const Ic=(id)=>{
+var np = Object.assign([],people)
+np[id].vote+=1;
+setPeople(np)
 }
-
+return (
+<div className="App">
+<h1>Voting System</h1>
+{
+people.map((data,index) => {
+return(
+<div key={index}>
+Name : {data.name}
+Vote : {data.vote}
+<button onClick={()=> Ic(index)}>Click
+here</button>
+</div>
+)
+})
+}
+</div>
+);
+}
 export default App;
